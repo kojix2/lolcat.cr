@@ -11,6 +11,11 @@ module Lolcat
     end
 
     def lol(input : IO, options : Options)
+      if options.force
+        Colorize.enabled = true
+      else
+        Colorize.on_tty_only!
+      end
       input.each_line.with_index do |line, index|
         puts rainbow_line(line.chomp, index, options)
       end
