@@ -23,7 +23,10 @@ jobs:
       - name: Install dependencies
         run: shards install --without-development --release
       - name: Run tests
-        run: crystal spec
+        run: |
+          crystal build examples/lol.cr
+          ./lol
+          crystal spec
       - name: Build executable
         run: shards build --release
       - name: Run executable (help)
