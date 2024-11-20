@@ -11,6 +11,7 @@ module Lolcat
       else
         Colorize.on_tty_only!
       end
+
       lol(input, options) do |line|
         puts line
       end
@@ -44,7 +45,8 @@ module Lolcat
 
           # Apply rainbow coloring to visible characters
           if character
-            color = rainbow_color(index + char_position / options.spread, options.freq)
+            offset = options.offset + index + char_position / options.spread
+            color = rainbow_color(offset, options.freq)
 
             # Check invert option and apply colors accordingly
             if options.invert

@@ -37,6 +37,13 @@ module Lolcat
         @opt.freq = freq
       end
 
+      # Seed
+      on("-S", "--seed SEED", "Rainbow offset (default: random)") do |seed_str|
+        seed = seed_str.to_f64
+        offset = seed % 256
+        @opt.offset = offset
+      end
+
       # Invert
       on("-i", "--invert", "Invert fg and bg") do
         @opt.invert = true
