@@ -7,11 +7,5 @@
 *.so
 *.a
 *.dylib
-*.def
-*.exp
-*.lib
-*.pdb
+*.bundle
 *.dll
-*.exe
-*.o
-*.obj
