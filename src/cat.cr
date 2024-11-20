@@ -30,7 +30,7 @@ module Lolcat
     end
 
     def run_lolcat
-      lol(ARGF, option)
+      lol_cat(ARGF, option)
     end
 
     def print_version
@@ -38,7 +38,7 @@ module Lolcat
     end
 
     def print_help
-      lol(parser.help_message, option)
+      lol_cat(parser.help_message, option)
     end
 
     private def handle_error(ex : Exception)

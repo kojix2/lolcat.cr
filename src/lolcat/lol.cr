@@ -5,12 +5,12 @@ module Lolcat
   module Lol
     ANSI_ESCAPE = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
 
-    def lol(input : String, options : Options)
+    def lol_cat(input : String, options : Options)
       io = IO::Memory.new(input)
-      lol(io, options)
+      lol_cat(io, options)
     end
 
-    def lol(input : IO, options : Options)
+    def lol_cat(input : IO, options : Options)
       if options.force
         Colorize.enabled = true
       else
