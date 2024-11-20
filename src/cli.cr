@@ -1,7 +1,7 @@
 require "./lolcat/*"
 
 module Lolcat
-  class Cat
+  class CLI
     include Lol
 
     class_property debug : Bool = false
@@ -43,11 +43,11 @@ module Lolcat
 
     private def handle_error(ex : Exception)
       error_message = "\n[lolcat] ERROR: #{ex.class} #{ex.message}"
-      error_message += "\n#{ex.backtrace.join("\n")}" if Cat.debug
+      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug
       STDERR.puts error_message
       exit(1)
     end
   end
 end
 
-Lolcat::Cat.new.run
+Lolcat::CLI.new.run

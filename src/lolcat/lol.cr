@@ -5,19 +5,27 @@ module Lolcat
   module Lol
     ANSI_ESCAPE = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
 
-    def lol_cat(input : String, options : Options)
-      io = IO::Memory.new(input)
-      lol_cat(io, options)
-    end
-
-    def lol_cat(input : IO, options : Options)
+    def lol_cat(input : (IO | String), options : Options)
       if options.force
         Colorize.enabled = true
       else
         Colorize.on_tty_only!
       end
+      lol(input, options) do |line|
+        puts line
+      end
+    end
+
+    def lol(input : String, options : Options)
+      io = IO::Memory.new(input)
+      lol(io, options) do |line|
+        yield line
+      end
+    end
+
+    def lol(input : IO, options : Options)
       input.each_line.with_index do |line, index|
-        puts rainbow_line(line.chomp, index, options)
+        yield rainbow_line(line.chomp, index, options)
       end
     end
 

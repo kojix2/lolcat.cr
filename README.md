@@ -19,6 +19,8 @@ mv bin/lolcat /usr/local/bin/ # or any directory in your PATH
 
 ## Usage
 
+CLI
+
 ```
 lolcat README.md
 ```
@@ -26,6 +28,10 @@ lolcat README.md
 ```
 lolcat --help
 ```
+
+As a library
+
+See [examples](examples/)
 
 ## Development
 

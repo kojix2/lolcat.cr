@@ -49,7 +49,7 @@ module Lolcat
 
       # Debug
       on("-D", "--debug", "Enable debug mode") do
-        Lolcat::Cat.debug = true
+        Lolcat::CLI.debug = true
       end
 
       # Version
