@@ -37,6 +37,11 @@ module Lolcat
         @opt.freq = freq
       end
 
+      # Invert
+      on("-i", "--invert", "Invert fg and bg") do
+        @opt.invert = true
+      end
+
       # Force
       on("-f", "--force", "Force color output even if stdout is not a TTY (default: false)") do
         @opt.force = true

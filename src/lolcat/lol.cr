@@ -22,7 +22,6 @@ module Lolcat
     end
 
     def rainbow_line(line : String, index : Int32, options : Options) : String
-      # Generate rainbow-colored line while preserving ANSI escape codes
       colored_line = String.build do |str|
         char_position = 0 # Track the visible character position
 
@@ -38,7 +37,14 @@ module Lolcat
           # Apply rainbow coloring to visible characters
           if character
             color = rainbow_color(index + char_position / options.spread, options.freq)
-            str << character.colorize(*color)
+
+            # Check invert option and apply colors accordingly
+            if options.invert
+              str << character.colorize.back(*color)
+            else
+              str << character.colorize.fore(*color)
+            end
+
             char_position += 1
           end
         end
