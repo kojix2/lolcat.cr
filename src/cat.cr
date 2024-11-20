@@ -34,7 +34,7 @@ module Lolcat
     end
 
     def print_version
-      puts "lolcat version 1.0.0"
+      puts "lolcat version #{Lolcat::VERSION}"
     end
 
     def print_help
