@@ -3,3 +3,15 @@
 /bin/
 /.shards/
 *.dwarf
+
+*.so
+*.a
+*.dylib
+*.def
+*.exp
+*.lib
+*.pdb
+*.dll
+*.exe
+*.o
+*.obj
