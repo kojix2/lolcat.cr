@@ -22,7 +22,7 @@ module Lolcat
       BANNER
 
       # Spread
-      on("-p", "--spread SPREAD", "Rainbow spread (default: 3.0)") do |spread_str|
+      on("-p", "--spread SPREAD", "Rainbow spread (default: #{opt.spread})") do |spread_str|
         spread = spread_str.to_f
         if spread < 0.1
           STDERR.puts "[lolcat] ERROR: Spread must be >= 0.1"
@@ -32,49 +32,50 @@ module Lolcat
       end
 
       # Frequency
-      on("-F", "--freq FREQ", "Rainbow frequency (default: 0.1)") do |freq|
-        @opt.freq = freq.to_f
+      on("-F", "--freq FREQ", "Rainbow frequency (default: #{opt.freq})") do |freq_str|
+        freq = freq_str.to_f
+        @opt.freq = freq
       end
 
-      # Seed
-      on("-S", "--seed SEED", "Rainbow seed, 0 = random (default: 0)") do |seed|
-        @opt.seed = seed.to_i
-      end
+      # # Seed
+      # on("-S", "--seed SEED", "Rainbow seed, 0 = random (default: 0)") do |seed|
+      #   @opt.seed = seed.to_i
+      # end
 
-      # Animate
-      on("-a", "--animate", "Enable psychedelics (default: false)") do
-        @opt.animate = true
-      end
+      # # Animate
+      # on("-a", "--animate", "Enable psychedelics (default: false)") do
+      #   @opt.animate = true
+      # end
 
-      # Duration
-      on("-d", "--duration DURATION", "Animation duration (default: 12)") do |duration_str|
-        duration = duration_str.to_f
-        if duration < 0.1
-          STDERR.puts "[lolcat] ERROR: Duration must be >= 0.1"
-          exit(1)
-        end
-        @opt.duration = duration
-      end
+      # # Duration
+      # on("-d", "--duration DURATION", "Animation duration (default: 12)") do |duration_str|
+      #   duration = duration_str.to_f
+      #   if duration < 0.1
+      #     STDERR.puts "[lolcat] ERROR: Duration must be >= 0.1"
+      #     exit(1)
+      #   end
+      #   @opt.duration = duration
+      # end
 
-      # Speed
-      on("-s", "--speed SPEED", "Animation speed (default: 20.0)") do |speed_str|
-        speed = speed_str.to_f
-        if speed < 0.1
-          STDERR.puts "[lolcat] ERROR: Speed must be >= 0.1"
-          exit(1)
-        end
-        @opt.speed = speed
-      end
+      # # Speed
+      # on("-s", "--speed SPEED", "Animation speed (default: 20.0)") do |speed_str|
+      #   speed = speed_str.to_f
+      #   if speed < 0.1
+      #     STDERR.puts "[lolcat] ERROR: Speed must be >= 0.1"
+      #     exit(1)
+      #   end
+      #   @opt.speed = speed
+      # end
 
-      # Invert
-      on("-i", "--invert", "Invert foreground and background (default: false)") do
-        @opt.invert = true
-      end
+      # # Invert
+      # on("-i", "--invert", "Invert foreground and background (default: false)") do
+      #   @opt.invert = true
+      # end
 
-      # Truecolor
-      on("-t", "--truecolor", "Enable 24-bit (truecolor) (default: false)") do
-        @opt.truecolor = true
-      end
+      # # Truecolor
+      # on("-t", "--truecolor", "Enable 24-bit (truecolor) (default: false)") do
+      #   @opt.truecolor = true
+      # end
 
       # Force
       on("-f", "--force", "Force color output even if stdout is not a TTY (default: false)") do
@@ -99,14 +100,14 @@ module Lolcat
 
       # Handle invalid options
       invalid_option do |flag|
-        STDERR.puts "[lolcat] ERROR: #{flag} is not a valid option."
         STDERR.puts self
+        STDERR.puts "[lolcat] ERROR: #{flag} is not a valid option."
         exit(1)
       end
 
       missing_option do |flag|
-        STDERR.puts "[lolcat] ERROR: #{flag} option expects an argument."
         STDERR.puts self
+        STDERR.puts "[lolcat] ERROR: #{flag} option expects an argument."
         exit(1)
       end
     end
