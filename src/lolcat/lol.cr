@@ -3,6 +3,8 @@ require "./options"
 
 module Lolcat
   module Lol
+    ANSI_ESCAPE = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
+
     def lol(input : String, options : Options)
       io = IO::Memory.new(input)
       lol(io, options)
@@ -15,13 +17,28 @@ module Lolcat
     end
 
     def rainbow_line(line : String, index : Int32, options : Options) : String
-      # Generate rainbow-colored line
+      # Generate rainbow-colored line while preserving ANSI escape codes
       colored_line = String.build do |str|
-        line.each_char.with_index do |char, char_index|
-          color = rainbow_color(index + char_index / options.spread, options.freq)
-          str << char.colorize(*color)
+        char_position = 0 # Track the visible character position
+
+        line.scan(ANSI_ESCAPE) do |match|
+          escape_sequence = match[1]? # Match group 1: ANSI escape codes
+          character = match[2]?       # Match group 2: visible character or nil
+
+          # Add ANSI escape sequences directly
+          if escape_sequence
+            str << escape_sequence
+          end
+
+          # Apply rainbow coloring to visible characters
+          if character
+            color = rainbow_color(index + char_position / options.spread, options.freq)
+            str << character.colorize(*color)
+            char_position += 1
+          end
         end
       end
+
       colored_line
     end
 
@@ -30,7 +47,7 @@ module Lolcat
       red = ((Math.sin(freq * offset + 0) + 1) * 127).to_u8
       green = ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8
       blue = ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8
-      {red, green, blue} # Returns a hash usable with `colorize`
+      {red, green, blue}
     end
   end
 end
