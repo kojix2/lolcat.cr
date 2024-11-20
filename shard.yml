@@ -6,7 +6,7 @@ authors:
 
 targets:
   lolcat:
-    main: src/cat.cr
+    main: src/cli.cr
 
 crystal: '>= 1.14.0'
 
