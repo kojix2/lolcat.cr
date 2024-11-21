@@ -50,7 +50,7 @@ module Lolcat
       end
 
       # Force
-      on("-f", "--force", "Force color output even if stdout is not a TTY (default: false)") do
+      on("-f", "--force", "Force color even when stdout is not a tty") do
         @opt.force = true
       end
 
@@ -73,13 +73,13 @@ module Lolcat
       # Handle invalid options
       invalid_option do |flag|
         STDERR.puts self
-        STDERR.puts "[lolcat] ERROR: #{flag} is not a valid option."
+        STDERR.puts "/n[lolcat] ERROR: #{flag} is not a valid option."
         exit(1)
       end
 
       missing_option do |flag|
         STDERR.puts self
-        STDERR.puts "[lolcat] ERROR: #{flag} option expects an argument."
+        STDERR.puts "/n[lolcat] ERROR: #{flag} option expects an argument."
         exit(1)
       end
     end
