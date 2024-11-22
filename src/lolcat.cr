@@ -40,7 +40,7 @@ module Lolcat
   # Example:
   # ```
   # Lolcat.lol("Rainbow string", invert: true) do |line|
-  #   puts line
+  #   print line
   # end
   # ```
   #

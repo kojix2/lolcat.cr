@@ -13,7 +13,7 @@ module Lolcat
       end
 
       lol(input, options) do |line|
-        puts line
+        print line
       end
     end
 
@@ -25,8 +25,10 @@ module Lolcat
     end
 
     def lol(input : IO, options : Options)
-      input.each_line.with_index do |line, index|
-        yield rainbow_line(line.chomp, index, options)
+      # 2024-11-22 chomp: false is required to show correct output
+      # https://forum.crystal-lang.org/t/how-to-run-a-steam-locomotive-sl-through-a-pipe/7425/3
+      input.each_line(chomp: false).with_index do |line, index|
+        yield rainbow_line(line, index, options)
       end
     end
 
