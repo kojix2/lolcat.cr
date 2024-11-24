@@ -38,7 +38,8 @@ module Lolcat
     end
 
     def print_help
-      lol_cat(parser.help_message, option)
+      help_message = "#{parser.help_message}\n"
+      lol_cat(help_message, option)
     end
 
     private def handle_error(ex : Exception)
