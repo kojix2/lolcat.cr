@@ -44,7 +44,7 @@ module Lolcat
   # end
   # ```
   #
-  def self.lol(input, spread : Float64 = 3.0, freq : Float64 = 0.1, offset : Float64? = nil, invert : Bool = false) : Nil
+  def self.lol(input, spread : Float64 = 3.0, freq : Float64 = 0.1, offset : Float64? = nil, invert : Bool = false, &) : Nil
     offset_f64 = offset || rand * 256.0
     options = Lolcat::Options.new(spread: spread, freq: freq, offset: offset_f64, invert: invert, force: true)
 

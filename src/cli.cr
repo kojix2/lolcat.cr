@@ -4,7 +4,7 @@ module Lolcat
   class CLI
     include Lol
 
-    class_property debug : Bool = false
+    class_property? debug : Bool = false
 
     getter parser : Parser
     getter option : Options
@@ -43,7 +43,7 @@ module Lolcat
 
     private def handle_error(ex : Exception)
       error_message = "\n[lolcat] ERROR: #{ex.class} #{ex.message}"
-      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug
+      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug?
       STDERR.puts error_message
       exit(1)
     end

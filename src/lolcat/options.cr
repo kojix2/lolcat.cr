@@ -6,8 +6,8 @@ module Lolcat
     property spread : Float64
     property freq : Float64
     property offset : Float64
-    property invert : Bool
-    property force : Bool
+    property? invert : Bool
+    property? force : Bool
 
     def initialize(
       @action = Action::Lolcat,

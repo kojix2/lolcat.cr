@@ -6,7 +6,7 @@ module Lolcat
     ANSI_ESCAPE = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
 
     def lol_cat(input : (IO | String), options : Options)
-      if options.force
+      if options.force?
         Colorize.enabled = true
       else
         Colorize.on_tty_only!
@@ -15,19 +15,18 @@ module Lolcat
       lol(input, options) do |line|
         print line
       end
-
     ensure
       print "\e[m\e[?25h\e[?1;5;2004l"
     end
 
-    def lol(input : String, options : Options)
+    def lol(input : String, options : Options, &)
       io = IO::Memory.new(input)
       lol(io, options) do |line|
         yield line
       end
     end
 
-    def lol(input : IO, options : Options)
+    def lol(input : IO, options : Options, &)
       input.each_line(chomp: false).with_index do |line, index|
         if line =~ /\n$/
           yield "#{rainbow_line(line.delete_at(-1), index, options)}\n"
@@ -56,7 +55,7 @@ module Lolcat
             color = rainbow_color(offset, options.freq)
 
             # Check invert option and apply colors accordingly
-            if options.invert
+            if options.invert?
               str << character.colorize.back(*color)
             else
               str << character.colorize.fore(*color)
