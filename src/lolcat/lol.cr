@@ -28,10 +28,12 @@ module Lolcat
     end
 
     def lol(input : IO, options : Options)
-      # 2024-11-22 chomp: false is required to show correct output
-      # https://forum.crystal-lang.org/t/how-to-run-a-steam-locomotive-sl-through-a-pipe/7425/3
       input.each_line(chomp: false).with_index do |line, index|
-        yield rainbow_line(line, index, options)
+        if line =~ /\n$/
+          yield "#{rainbow_line(line.delete_at(-1), index, options)}\n"
+        else
+          yield rainbow_line(line, index, options)
+        end
       end
     end
 
