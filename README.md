@@ -1,6 +1,6 @@
 # lolcat
 
-Crystal implimentation of the [lolcat](https://github.com/busyloop/lolcat).
+Crystal implementation of the [lolcat](https://github.com/busyloop/lolcat).
 
 - Animation is not supported yet.
 
