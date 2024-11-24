@@ -15,6 +15,9 @@ module Lolcat
       lol(input, options) do |line|
         print line
       end
+
+    ensure
+      print "\e[m\e[?25h\e[?1;5;2004l"
     end
 
     def lol(input : String, options : Options)
