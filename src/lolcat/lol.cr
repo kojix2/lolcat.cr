@@ -16,7 +16,9 @@ module Lolcat
         print line
       end
     ensure
-      print "\e[m\e[?25h\e[?1;5;2004l"
+      if STDOUT.tty?
+        print "\e[m\e[?25h\e[?1;5;2004l"
+      end
     end
 
     def lol(input : String, options : Options, &)
