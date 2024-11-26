@@ -160,14 +160,14 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat.cr#L6" target="_blank">
         lolcat.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L5" target="_blank">
         lolcat/lol.cr
       </a>
     
@@ -190,6 +190,11 @@
     
       <dt class="entry-const" id="ANSI_ESCAPE">
         <strong>ANSI_ESCAPE</strong> = <code><span class="s">/((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/</span>m</code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="INCOMPLETE_ESCAPE">
+        <strong>INCOMPLETE_ESCAPE</strong> = <code><span class="s">/\e(?:[ -\/]*|[\]PX^_][^\a\e]*|\[[0-?]*)$/</span></code>
       </dt>
       
     
@@ -234,7 +239,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#rainbow_line%28line%3AString%2Cindex%3AInt32%2Coptions%3AOptions%29%3AString-instance-method" class="signature"><strong>#rainbow_line</strong>(line : String, index : Int32, options : Options) : String</a>
+        <a href="#rainbow_line%28line%3AString%2Cindex%3AInt32%2Cpos%3AInt32%2Coptions%3AOptions%29%3AString-instance-method" class="signature"><strong>#rainbow_line</strong>(line : String, index : Int32, pos : Int32, options : Options) : String</a>
         
       </li>
     
@@ -273,7 +278,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -289,7 +294,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -305,7 +310,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -321,23 +326,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="rainbow_line(line:String,index:Int32,options:Options):String-instance-method">
+    <div class="entry-detail" id="rainbow_line(line:String,index:Int32,pos:Int32,options:Options):String-instance-method">
       <div class="signature">
         
-        def <strong>rainbow_line</strong>(line : String, index : Int32, options : <a href="../Lolcat/Options.html">Options</a>) : String
+        def <strong>rainbow_line</strong>(line : String, index : Int32, pos : Int32, options : <a href="../Lolcat/Options.html">Options</a>) : String
 
-        <a class="method-permalink" href="#rainbow_line%28line%3AString%2Cindex%3AInt32%2Coptions%3AOptions%29%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#rainbow_line%28line%3AString%2Cindex%3AInt32%2Cpos%3AInt32%2Coptions%3AOptions%29%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/a9af73032b83644fccd8fda137212b21f306a43c/src/lolcat/lol.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/06015c0513c9a3f6372a716992e67a7b59e29c00/src/lolcat/lol.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
