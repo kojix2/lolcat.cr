@@ -17,7 +17,7 @@ module Lolcat
         print line
       end
     ensure
-      if STDOUT.tty?
+      if STDOUT.tty? || options.force?
         print "\e[m\e[?25h\e[?1;5;2004l"
       end
     end
