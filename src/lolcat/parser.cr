@@ -44,6 +44,23 @@ module Lolcat
         @opt.offset = offset
       end
 
+      # Animate
+      on("-a", "--animate", "Enable psychedelics") do
+        @opt.animate = true
+      end
+
+      # Duration
+      on("-d", "--duration DURATION", "Animation duration (default: #{opt.duration})") do |duration_str|
+        duration = duration_str.to_i
+        @opt.duration = duration
+      end
+
+      # Speed
+      on("-s", "--speed SPEED", "Animation speed (default: #{opt.speed})") do |speed_str|
+        speed = speed_str.to_f
+        @opt.speed = speed
+      end
+
       # Invert
       on("-i", "--invert", "Invert fg and bg") do
         @opt.invert = true

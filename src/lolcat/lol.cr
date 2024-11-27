@@ -13,8 +13,15 @@ module Lolcat
         Colorize.on_tty_only!
       end
 
-      lol(input, options) do |line|
-        print line
+      if options.animate?
+        print "\e[?23l"
+        lol_animate(input, options) do |line|
+          print line
+        end
+      else
+        lol(input, options) do |line|
+          print line
+        end
       end
     ensure
       if STDOUT.tty? || options.force?
@@ -54,6 +61,51 @@ module Lolcat
             yield rainbow_line(line, line_number, cursor_position, options)
             cursor_position += line.size # tab width is 1
           end
+        end
+
+        buffer.clear
+      end
+    end
+
+    def lol_animate(input : String, options : Options, &)
+      io = IO::Memory.new(input)
+      lol_animate(io, options) do |line|
+        yield line
+      end
+    end
+
+    def lol_animate(input : IO, options : Options, &)
+      buffer = IO::Memory.new
+      chunk = Bytes.new(4096)
+      line_number = 0
+      bytes_read = 0
+      # FIXME: tab width is 1 for now
+      cursor_position = 0
+
+      while (bytes_read = input.read(chunk)) > 0
+        buffer.write(chunk[0, bytes_read])
+        buffer_content = buffer.to_s
+
+        if buffer_content =~ INCOMPLETE_ESCAPE
+          next
+        end
+
+        buffer_content.each_line(chomp: false) do |line|
+          print "\e7"
+          real_line_number = line_number
+          if line =~ /\n$/
+            (1..options.duration).each do |i|
+              print "\e8"
+              yield "#{rainbow_line(line.delete_at(-1), line_number, cursor_position, options)}\n"
+              line_number += 3
+              cursor_position = 0
+              sleep(Time::Span.new(nanoseconds: (1000000000/options.speed).to_i))
+            end
+          else
+            yield rainbow_line(line, line_number, cursor_position, options)
+            cursor_position += line.size # tab width is 1
+          end
+          line_number = real_line_number + 1
         end
 
         buffer.clear
