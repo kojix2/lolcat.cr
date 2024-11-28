@@ -53,13 +53,8 @@ module Lolcat
           if line =~ /\n$/
             line = line.delete_at(-1)
             if options.animate?
-              offset = get_offset(options.offset, line_number, cursor_position, options.spread)
-              yield "\e7#{rainbow_line(line, offset, options)}"
-              line = remove_escape_sequences(line)
-              (options.duration - 1).times do
-                offset += option.spread
-                yield "\e8#{rainbow_line(line, offset, options)}"
-                sleep_duration(options)
+              handle_animation(line, options, line_number, cursor_position) do |line|
+                yield line
               end
             else
               yield "#{rainbow_line(line, line_number, cursor_position, options)}"
@@ -69,13 +64,8 @@ module Lolcat
             cursor_position = 0
           else
             if options.animate?
-              offset = get_offset(options.offset, line_number, cursor_position, options.spread)
-              yield "\e7#{rainbow_line(line, offset, options)}"
-              line = remove_escape_sequences(line)
-              (options.duration - 1).times do
-                offset += options.spread
-                yield "\e8#{rainbow_line(line, offset, options)}"
-                sleep_duration(options)
+              handle_animation(line, options, line_number, cursor_position) do |line|
+                yield line
               end
             else
               yield rainbow_line(line, line_number, cursor_position, options)
@@ -85,6 +75,17 @@ module Lolcat
         end
 
         buffer.clear
+      end
+    end
+
+    private def handle_animation(line : String, options : Options, line_number : Int32, cursor_position : Int32, &)
+      offset = options.offset + line_number + cursor_position / options.spread
+      yield "\e7#{rainbow_line(line, offset, options)}"
+      line = remove_escape_sequences(line)
+      (options.duration - 1).times do
+        offset += options.spread
+        yield "\e8#{rainbow_line(line, offset, options)}"
+        sleep_duration(options)
       end
     end
 
