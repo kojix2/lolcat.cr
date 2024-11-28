@@ -51,30 +51,31 @@ module Lolcat
 
         buffer_content.each_line(chomp: false) do |line|
           if line =~ /\n$/
+            line = line.delete_at(-1)
             if options.animate?
               offset = get_offset(options.offset, line_number, cursor_position, options.spread)
-              yield "\e7#{rainbow_line(line.delete_at(-1), offset, options)}"
-              line = line.gsub(/\e\[[0-?]*[@JKPX]/, "")
+              yield "\e7#{rainbow_line(line, offset, options)}"
+              line = remove_escape_sequences(line)
               (options.duration - 1).times do
                 offset += option.spread
-                yield "\e8#{rainbow_line(line.delete_at(-1), offset, options)}"
-                sleep(Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i))
+                yield "\e8#{rainbow_line(line, offset, options)}"
+                sleep_duration(options)
               end
-              yield "\n"
             else
-              yield "#{rainbow_line(line.delete_at(-1), line_number, cursor_position, options)}\n"
+              yield "#{rainbow_line(line, line_number, cursor_position, options)}"
             end
+            yield "\n"
             line_number += 1
             cursor_position = 0
           else
             if options.animate?
               offset = get_offset(options.offset, line_number, cursor_position, options.spread)
               yield "\e7#{rainbow_line(line, offset, options)}"
-              line = line.gsub(/\e\[[0-?]*[@JKPX]/, "")
+              line = remove_escape_sequences(line)
               (options.duration - 1).times do
                 offset += options.spread
                 yield "\e8#{rainbow_line(line, offset, options)}"
-                sleep(Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i))
+                sleep_duration(options)
               end
             else
               yield rainbow_line(line, line_number, cursor_position, options)
@@ -85,6 +86,14 @@ module Lolcat
 
         buffer.clear
       end
+    end
+
+    private def remove_escape_sequences(s : String)
+      s.gsub(/\e\[[0-?]*[@JKPX]/, "")
+    end
+
+    private def sleep_duration(options : Options)
+      sleep Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i)
     end
 
     def rainbow_line(line : String, offset : Float64, options : Options) : String
