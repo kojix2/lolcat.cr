@@ -13,6 +13,10 @@ module Lolcat
         Colorize.on_tty_only!
       end
 
+      if options.animate?
+        print "\e[?23l"
+      end
+
       lol(input, options) do |line|
         print line
       end
@@ -47,11 +51,34 @@ module Lolcat
 
         buffer_content.each_line(chomp: false) do |line|
           if line =~ /\n$/
-            yield "#{rainbow_line(line.delete_at(-1), line_number, cursor_position, options)}\n"
+            if options.animate?
+              offset = get_offset(options.offset, line_number, cursor_position, options.spread)
+              yield "\e7#{rainbow_line(line.delete_at(-1), offset, options)}"
+              line = line.gsub(/\e\[[0-?]*[@JKPX]/, "")
+              (options.duration - 1).times do
+                offset += option.spread
+                yield "\e8#{rainbow_line(line.delete_at(-1), offset, options)}"
+                sleep(Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i))
+              end
+              yield "\n"
+            else
+              yield "#{rainbow_line(line.delete_at(-1), line_number, cursor_position, options)}\n"
+            end
             line_number += 1
             cursor_position = 0
           else
-            yield rainbow_line(line, line_number, cursor_position, options)
+            if options.animate?
+              offset = get_offset(options.offset, line_number, cursor_position, options.spread)
+              yield "\e7#{rainbow_line(line, offset, options)}"
+              line = line.gsub(/\e\[[0-?]*[@JKPX]/, "")
+              (options.duration - 1).times do
+                offset += options.spread
+                yield "\e8#{rainbow_line(line, offset, options)}"
+                sleep(Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i))
+              end
+            else
+              yield rainbow_line(line, line_number, cursor_position, options)
+            end
             cursor_position += line.size # tab width is 1
           end
         end
@@ -60,9 +87,9 @@ module Lolcat
       end
     end
 
-    def rainbow_line(line : String, index : Int32, pos : Int32, options : Options) : String
-      colored_line = String.build do |str|
-        char_position = pos # Track the visible character position
+    def rainbow_line(line : String, offset : Float64, options : Options) : String
+      String.build do |str|
+        char_position = 0
 
         line.scan(ANSI_ESCAPE) do |match|
           escape_sequence = match[1]? # Match group 1: ANSI escape codes
@@ -75,10 +102,9 @@ module Lolcat
 
           # Apply rainbow coloring to visible characters
           if character
-            offset = options.offset + index + char_position / options.spread
-            color = rainbow_color(offset, options.freq)
+            off_set = offset + char_position / options.spread
+            color = rainbow_color(off_set, options.freq)
 
-            # Check invert option and apply colors accordingly
             if options.invert?
               str << character.colorize.back(*color)
             else
@@ -89,8 +115,11 @@ module Lolcat
           end
         end
       end
+    end
 
-      colored_line
+    def rainbow_line(line : String, index : Int32, pos : Int32, options : Options) : String
+      offset = get_offset(options.offset, index, pos, options.spread)
+      rainbow_line(line, offset, options)
     end
 
     def rainbow_color(offset : Float64, freq : Float64) : {UInt8, UInt8, UInt8}
@@ -99,6 +128,10 @@ module Lolcat
       green = ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8
       blue = ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8
       {red, green, blue}
+    end
+
+    private def get_offset(offset : Float64, index : Int32, pos : Int32, spread : Float64) : Float64
+      offset + index + pos / spread
     end
   end
 end
