@@ -134,7 +134,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L4" target="_blank">
         lolcat/options.cr
       </a>
     
@@ -156,7 +156,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28action%3ALolcat%3A%3AAction%3DAction%3A%3ALolcat%2Cspread%3AFloat64%3D3.0%2Cfreq%3AFloat64%3D0.1%2Coffset%3AFloat64%3Drand%2A256.0%2Cinvert%3ABool%3Dfalse%2Cforce%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(action : Lolcat::Action = <span class="t">Action</span><span class="t">::</span><span class="t">Lolcat</span>, spread : Float64 = <span class="n">3.0</span>, freq : Float64 = <span class="n">0.1</span>, offset : Float64 = rand <span class="o">*</span> <span class="n">256.0</span>, invert : Bool = <span class="n">false</span>, force : Bool = <span class="n">false</span>)</a>
+        <a href="#new%28action%3ALolcat%3A%3AAction%3DAction%3A%3ALolcat%2Cspread%3AFloat64%3D3.0%2Cfreq%3AFloat64%3D0.1%2Coffset%3AFloat64%3Drand%2A256.0%2Canimate%3ABool%3Dfalse%2Cduration%3AInt32%3D12%2Cspeed%3AFloat64%3D20.0%2Cinvert%3ABool%3Dfalse%2Cforce%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(action : Lolcat::Action = <span class="t">Action</span><span class="t">::</span><span class="t">Lolcat</span>, spread : Float64 = <span class="n">3.0</span>, freq : Float64 = <span class="n">0.1</span>, offset : Float64 = rand <span class="o">*</span> <span class="n">256.0</span>, animate : Bool = <span class="n">false</span>, duration : Int32 = <span class="n">12</span>, speed : Float64 = <span class="n">20.0</span>, invert : Bool = <span class="n">false</span>, force : Bool = <span class="n">false</span>)</a>
         
       </li>
     
@@ -185,6 +185,26 @@
     
       <li class="entry-summary">
         <a href="#action%3D%28action%3AAction%29-instance-method" class="signature"><strong>#action=</strong>(action : Action)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#animate%3D%28animate%3ABool%29-instance-method" class="signature"><strong>#animate=</strong>(animate : Bool)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#animate%3F%3ABool-instance-method" class="signature"><strong>#animate?</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#duration%3AInt32-instance-method" class="signature"><strong>#duration</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#duration%3D%28duration%3AInt32%29-instance-method" class="signature"><strong>#duration=</strong>(duration : Int32)</a>
         
       </li>
     
@@ -225,6 +245,16 @@
     
       <li class="entry-summary">
         <a href="#offset%3D%28offset%3AFloat64%29-instance-method" class="signature"><strong>#offset=</strong>(offset : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#speed%3AFloat64-instance-method" class="signature"><strong>#speed</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#speed%3D%28speed%3AFloat64%29-instance-method" class="signature"><strong>#speed=</strong>(speed : Float64)</a>
         
       </li>
     
@@ -295,18 +325,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(action:Lolcat::Action=Action::Lolcat,spread:Float64=3.0,freq:Float64=0.1,offset:Float64=rand*256.0,invert:Bool=false,force:Bool=false)-class-method">
+    <div class="entry-detail" id="new(action:Lolcat::Action=Action::Lolcat,spread:Float64=3.0,freq:Float64=0.1,offset:Float64=rand*256.0,animate:Bool=false,duration:Int32=12,speed:Float64=20.0,invert:Bool=false,force:Bool=false)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(action : <a href="../Lolcat/Action.html">Lolcat::Action</a> = <span class="t">Action</span><span class="t">::</span><span class="t">Lolcat</span>, spread : Float64 = <span class="n">3.0</span>, freq : Float64 = <span class="n">0.1</span>, offset : Float64 = rand <span class="o">*</span> <span class="n">256.0</span>, invert : Bool = <span class="n">false</span>, force : Bool = <span class="n">false</span>)
+        def self.<strong>new</strong>(action : <a href="../Lolcat/Action.html">Lolcat::Action</a> = <span class="t">Action</span><span class="t">::</span><span class="t">Lolcat</span>, spread : Float64 = <span class="n">3.0</span>, freq : Float64 = <span class="n">0.1</span>, offset : Float64 = rand <span class="o">*</span> <span class="n">256.0</span>, animate : Bool = <span class="n">false</span>, duration : Int32 = <span class="n">12</span>, speed : Float64 = <span class="n">20.0</span>, invert : Bool = <span class="n">false</span>, force : Bool = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#new%28action%3ALolcat%3A%3AAction%3DAction%3A%3ALolcat%2Cspread%3AFloat64%3D3.0%2Cfreq%3AFloat64%3D0.1%2Coffset%3AFloat64%3Drand%2A256.0%2Cinvert%3ABool%3Dfalse%2Cforce%3ABool%3Dfalse%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28action%3ALolcat%3A%3AAction%3DAction%3A%3ALolcat%2Cspread%3AFloat64%3D3.0%2Cfreq%3AFloat64%3D0.1%2Coffset%3AFloat64%3Drand%2A256.0%2Canimate%3ABool%3Dfalse%2Cduration%3AInt32%3D12%2Cspeed%3AFloat64%3D20.0%2Cinvert%3ABool%3Dfalse%2Cforce%3ABool%3Dfalse%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -338,7 +368,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -354,7 +384,71 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="animate=(animate:Bool)-instance-method">
+      <div class="signature">
+        
+        def <strong>animate=</strong>(animate : Bool)
+
+        <a class="method-permalink" href="#animate%3D%28animate%3ABool%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="animate?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>animate?</strong> : Bool
+
+        <a class="method-permalink" href="#animate%3F%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="duration:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>duration</strong> : Int32
+
+        <a class="method-permalink" href="#duration%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="duration=(duration:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>duration=</strong>(duration : Int32)
+
+        <a class="method-permalink" href="#duration%3D%28duration%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -370,7 +464,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -386,7 +480,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -402,7 +496,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -418,7 +512,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -434,7 +528,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -450,7 +544,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -466,7 +560,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -482,7 +576,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="speed:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>speed</strong> : Float64
+
+        <a class="method-permalink" href="#speed%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="speed=(speed:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>speed=</strong>(speed : Float64)
+
+        <a class="method-permalink" href="#speed%3D%28speed%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -498,7 +624,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -514,7 +640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/6c8c369e840cc1d1ababba7767e996e2d89855a0/src/lolcat/options.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/d066bb4e5b40833f5775ad972815715bf03d446e/src/lolcat/options.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
