@@ -1,12 +1,14 @@
 # lolcat
 
+[![build](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml)
+
 Crystal implementation of the [lolcat](https://github.com/busyloop/lolcat).
 
 - Animation is not supported yet.
 
 ## Installation
 
-Download from [GitHub Release]
+Download from [GitHub Release](https://github.com/kojix2/lolcat.cr/releases)
 
 From source code:
 
