@@ -1,10 +1,12 @@
-# lolcat
+# <div align="center">What?<div>
+
+<div align="center"><img src="https://raw.githubusercontent.com/busyloop/lolcat/master/ass/nom.jpg"></div>
+
+---
 
 [![build](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml)
 
 Crystal implementation of the [lolcat](https://github.com/busyloop/lolcat).
-
-- Animation is not supported yet.
 
 ## Installation
 
@@ -21,8 +23,6 @@ mv bin/lolcat /usr/local/bin/ # or any directory in your PATH
 
 ## Usage
 
-CLI
-
 ```
 lolcat README.md
 ```
@@ -37,10 +37,8 @@ See [examples](examples/)
 
 ## Development
 
-Purpose:
-
-This project was created as a template or sample for creating a command line tool.
-It uses only standard libraries and is very simple in its mechanics.
+This project was created as an example of a command line tool.
+Use only standard libraries and keep it simple.
 
 ## Contributing
 
@@ -48,5 +46,5 @@ Pull requests and issues are welcome.
 
 ## License
 
-The original lolcat is licensed under the BSD 3-Clause "New" or "Revised" License
-So this project is also licensed under the same license.
+The original lolcat is licensed under the BSD 3-Clause "New" or "Revised" License.
+Thus, the same is true for this project.
