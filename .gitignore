@@ -3,7 +3,7 @@
 /bin/
 /.shards/
 *.dwarf
-
+*.lock
 *.so
 *.a
 *.dylib
