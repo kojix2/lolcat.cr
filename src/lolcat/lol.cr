@@ -14,7 +14,7 @@ module Lolcat
       end
 
       if options.animate?
-        print "\e[?23l"
+        print "\e[?25l"
       end
 
       lol(input, options) do |line|
