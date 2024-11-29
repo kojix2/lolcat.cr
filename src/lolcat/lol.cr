@@ -48,27 +48,32 @@ module Lolcat
         next if buffer_content =~ INCOMPLETE_ESCAPE
 
         buffer_content.each_line(chomp: false) do |line|
-          if line =~ /\n$/
-            line = line.delete_at(-1)
-            if options.animate?
-              handle_animation(line, options, line_number, cursor_position) { |line| yield line }
-            else
-              yield "#{rainbow_line(line, line_number, cursor_position, options)}"
-            end
-            yield "\n"
-            line_number += 1
-            cursor_position = 0
-          else
-            if options.animate?
-              handle_animation(line, options, line_number, cursor_position) { |line| yield line }
-            else
-              yield rainbow_line(line, line_number, cursor_position, options)
-            end
-            cursor_position += line.size # tab is counted as 1 char for now
-          end
+          line_number, cursor_position =
+            clip_tail(line, line_number, cursor_position, options) { |line| yield line }
         end
 
         buffer.clear
+      end
+    end
+
+    private def clip_tail(line, line_number, cursor_position, options) : {Int32, Int32}
+      if (flag = line.ends_with?("\n"))
+        # "\r\n" should be `chomped` to "\r" here! not ""
+        line = line.delete_at(-1)
+      end
+
+      if options.animate?
+        handle_animation(line, options, line_number, cursor_position) { |line| yield line }
+      else
+        yield rainbow_line(line, line_number, cursor_position, options)
+      end
+
+      if flag
+        yield "\n"
+        {line_number + 1, 0}
+      else
+        # tab is counted as 1 char for now
+        {line_number, cursor_position + line.size}
       end
     end
 
