@@ -13,19 +13,19 @@ module Lolcat
 
     RESET_TERMINAL_MODES = "\e[?1;5;2004l"
 
+    def rainbow_color(offset : Float64, freq : Float64) : {UInt8, UInt8, UInt8}
+      red = ((Math.sin(freq * offset + 0) + 1) * 127).to_u8
+      green = ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8
+      blue = ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8
+      {red, green, blue}
+    end
+
     def lol_cat(input : (IO | String), options : Options)
-      if options.force?
-        Colorize.enabled = true
-      else
-        Colorize.on_tty_only!
-      end
-
+      options.force? ? Colorize.enabled = true : Colorize.on_tty_only!
       print HIDE_CURSOR if options.animate?
-
       lol(input, options) { |line| print line }
     ensure
       if STDOUT.tty? || options.force?
-        # print "\e[m\e[?25h\e[?1;5;2004l"
         print "#{RESET_ATTRIBUTES}#{SHOW_CURSOR}#{RESET_TERMINAL_MODES}"
       end
     end
@@ -118,14 +118,6 @@ module Lolcat
     def rainbow_line(line : String, index : Int32, pos : Int32, options : Options) : String
       offset = options.offset + index + pos / options.spread
       rainbow_line(line, offset, options)
-    end
-
-    def rainbow_color(offset : Float64, freq : Float64) : {UInt8, UInt8, UInt8}
-      # Calculate RGB color using sine waves
-      red = ((Math.sin(freq * offset + 0) + 1) * 127).to_u8
-      green = ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8
-      blue = ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8
-      {red, green, blue}
     end
   end
 end
