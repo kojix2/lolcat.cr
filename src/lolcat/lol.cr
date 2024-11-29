@@ -13,11 +13,10 @@ module Lolcat
 
     RESET_TERMINAL_MODES = "\e[?1;5;2004l"
 
-    def rainbow_color(offset : Float64, freq : Float64) : {UInt8, UInt8, UInt8}
-      red = ((Math.sin(freq * offset + 0) + 1) * 127).to_u8
-      green = ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8
-      blue = ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8
-      {red, green, blue}
+    def rainbow_color(freq : Float64, offset : Float64) : {UInt8, UInt8, UInt8}
+      {((Math.sin(freq * offset + 0) + 1) * 127).to_u8,                # Red
+       ((Math.sin(freq * offset + 2 * Math::PI / 3) + 1) * 127).to_u8, # Green
+       ((Math.sin(freq * offset + 4 * Math::PI / 3) + 1) * 127).to_u8} # Blue
     end
 
     def lol_cat(input : (IO | String), options : Options)
@@ -65,7 +64,7 @@ module Lolcat
       if options.animate?
         handle_animation(line, options, line_number, cursor_position) { |line| yield line }
       else
-        yield rainbow_line(line, line_number, cursor_position, options)
+        yield rainbow_line(line, options, line_number, cursor_position)
       end
 
       if flag
@@ -79,11 +78,11 @@ module Lolcat
 
     private def handle_animation(line : String, options : Options, line_number : Int32, cursor_position : Int32, &)
       offset = options.offset + line_number + cursor_position / options.spread
-      yield "\e7#{rainbow_line(line, offset, options)}"
+      yield "\e7#{rainbow_line(line, options, offset)}"
       line = line.gsub(ESCAPE_SEQUENCES, "")
       (options.duration - 1).times do
         offset += options.spread
-        yield "\e8#{rainbow_line(line, offset, options)}"
+        yield "\e8#{rainbow_line(line, options, offset)}"
         sleep_duration(options)
       end
     end
@@ -92,7 +91,12 @@ module Lolcat
       sleep Time::Span.new(nanoseconds: (1_000_000_000 / options.speed).to_i)
     end
 
-    def rainbow_line(line : String, offset : Float64, options : Options) : String
+    def rainbow_line(line : String, options : Options, index : Int32, pos : Int32) : String
+      offset = options.offset + index + pos / options.spread
+      rainbow_line(line, options, offset)
+    end
+
+    def rainbow_line(line : String, options : Options, offset : Float64) : String
       String.build do |str|
         char_position = 0
 
@@ -100,13 +104,13 @@ module Lolcat
           escape_sequence = match[1]? # Match group 1: ANSI escape codes
           character = match[2]?       # Match group 2: visible character or nil
 
-          # Add ANSI escape sequences directly
+          # Add ANSI escape sequences directly NOTE: Should be removed?
           str << escape_sequence if escape_sequence
 
           # Apply rainbow coloring to visible characters
           if character
             off_set = offset + char_position / options.spread
-            color = rainbow_color(off_set, options.freq)
+            color = rainbow_color(options.freq, off_set)
 
             if options.invert?
               str << character.colorize.back(*color)
@@ -118,11 +122,6 @@ module Lolcat
           end
         end
       end
-    end
-
-    def rainbow_line(line : String, index : Int32, pos : Int32, options : Options) : String
-      offset = options.offset + index + pos / options.spread
-      rainbow_line(line, offset, options)
     end
   end
 end
