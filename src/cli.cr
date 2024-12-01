@@ -11,10 +11,15 @@ module Lolcat
 
     def initialize
       @parser = Lolcat::Parser.new
-      @option = parser.parse(ARGV)
+      @option = Options.new
+    end
+
+    def parse_args(args = ARGV)
+      @option = parser.parse(args)
     end
 
     def run
+      parse_args
       case option.action
       when Action::Lolcat
         run_lolcat
