@@ -6,7 +6,7 @@
 
 [![build](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/lolcat.cr/actions/workflows/build.yml)
 
-Crystal implementation of the [lolcat](https://github.com/busyloop/lolcat).
+:black_cat: Crystal implementation of the [lolcat](https://github.com/busyloop/lolcat)
 
 ## Installation
 
@@ -14,7 +14,7 @@ Download from [GitHub Release](https://github.com/kojix2/lolcat.cr/releases)
 
 From source code:
 
-```
+```sh
 git clone https://github.com/kojix2/lolcat.cr
 cd lolcat.cr
 shards build --release
@@ -23,11 +23,11 @@ mv bin/lolcat /usr/local/bin/ # or any directory in your PATH
 
 ## Usage
 
-```
+```sh
 lolcat README.md
 ```
 
-```
+```sh
 lolcat --help
 ```
 
