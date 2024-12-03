@@ -21,6 +21,12 @@ shards build --release
 mv bin/lolcat /usr/local/bin/ # or any directory in your PATH
 ```
 
+Homebrew:
+
+```sh
+brew install kojix2/brew/lolcat
+```
+
 ## Usage
 
 ```sh
