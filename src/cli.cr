@@ -48,9 +48,8 @@ module Lolcat
     end
 
     private def handle_error(ex : Exception)
-      error_message = "\n[lolcat] ERROR: #{ex.class} #{ex.message}"
-      error_message += "\n#{ex.backtrace.join("\n")}" if CLI.debug?
-      STDERR.puts error_message
+      STDERR.puts "\n[lolcat] ERROR: #{ex.class} #{ex.message}"
+      STDERR.puts "\n#{ex.backtrace.join("\n")}" if CLI.debug?
       exit(1)
     end
   end

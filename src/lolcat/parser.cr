@@ -90,14 +90,12 @@ module Lolcat
       # Handle invalid options
       invalid_option do |flag|
         STDERR.puts self
-        STDERR.puts "/n[lolcat] ERROR: #{flag} is not a valid option."
-        exit(1)
+        raise InvalidOption.new(flag)
       end
 
       missing_option do |flag|
         STDERR.puts self
-        STDERR.puts "/n[lolcat] ERROR: #{flag} option expects an argument."
-        exit(1)
+        raise MissingOption.new(flag)
       end
     end
 
