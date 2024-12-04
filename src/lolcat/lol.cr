@@ -30,7 +30,7 @@ module Lolcat
     end
 
     def lol(input : String, options : Options, &)
-      lol(IO::Memory.new(input), options) { |l| yield l }
+      lol(IO::Memory.new(input), options) { |line| yield line }
     end
 
     def lol(input : IO, options : Options, &)
@@ -48,21 +48,21 @@ module Lolcat
 
         buffer_content.each_line(chomp: false) do |line|
           line_number, cursor_position =
-            clip_tail(line, line_number, cursor_position, options) { |line| yield line }
+            clip_tail(line, line_number, cursor_position, options) { |lin| yield lin }
         end
 
         buffer.clear
       end
     end
 
-    private def clip_tail(line, line_number, cursor_position, options) : {Int32, Int32}
-      if (flag = line.ends_with?("\n"))
+    private def clip_tail(line, line_number, cursor_position, options, &) : {Int32, Int32}
+      if flag = line.ends_with?("\n")
         # "\r\n" should be `chomped` to "\r" here! not ""
         line = line.delete_at(-1)
       end
 
       if options.animate?
-        handle_animation(line, options, line_number, cursor_position) { |line| yield line }
+        handle_animation(line, options, line_number, cursor_position) { |lin| yield lin }
       else
         yield rainbow_line(line, options, line_number, cursor_position)
       end

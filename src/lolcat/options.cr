@@ -21,7 +21,7 @@ module Lolcat
       @duration = 12,
       @speed = 20.0,
       @invert = false,
-      @force = false
+      @force = false,
     )
     end
   end
