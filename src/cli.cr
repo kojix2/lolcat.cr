@@ -12,6 +12,17 @@ module Lolcat
     def initialize
       @parser = Lolcat::Parser.new
       @option = Options.new
+
+      Process.on_terminate do
+        if STDOUT.tty? || @option.force?
+          # reset terminal modes
+          # FIXME: This is not enough
+          # The problem remains when Ctrl+C while executing the following commands
+          # sl | bin/lolcat
+          print "#{RESET_ATTRIBUTES}#{SHOW_CURSOR}#{RESET_TERMINAL_MODES}"
+        end
+        exit(1)
+      end
     end
 
     def parse_args(args = ARGV)
@@ -48,11 +59,6 @@ module Lolcat
     end
 
     private def handle_error(ex : Exception)
-      if STDOUT.tty? || options.force?
-        # If the function lol#lol_cat passes through rescue, it is a double call.
-        # However, errors that do not pass lol_cat must also be handled.
-        print "#{Lol::RESET_ATTRIBUTES}#{Lol::SHOW_CURSOR}#{Lol::RESET_TERMINAL_MODES}"
-      end
       STDERR.puts "\n[lolcat] ERROR: #{ex.class} #{ex.message}"
       STDERR.puts "\n#{ex.backtrace.join("\n")}" if CLI.debug?
       exit(1)
