@@ -39,7 +39,36 @@ lolcat --help
 
 As a library
 
-See [examples](examples/)
+You can use lolcat.cr as a library in your Crystal projects:
+
+```yaml
+# Add to your shard.yml
+dependencies:
+  lolcat:
+    github: kojix2/lolcat.cr
+```
+
+Basic usage:
+
+```crystal
+require "lolcat"
+
+# Use the Lol module directly
+include Lolcat::Lol
+
+# Create options with default values
+options = Lolcat::Options.new
+
+# Apply rainbow colors to a string
+colored_text = rainbow_line("Hello, colorful world!", options, 0.0)
+puts colored_text
+
+# Or process an entire IO stream
+io = IO::Memory.new("Multiple\nLines\nOf\nText")
+lol_cat(io, options)
+```
+
+For more examples, see [examples](examples/)
 
 ## Development
 

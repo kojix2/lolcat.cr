@@ -3,11 +3,21 @@ require "./options"
 require "./action"
 
 module Lolcat
+  # Command line argument parser for the lolcat program.
+  #
+  # This class extends Crystal's OptionParser to handle lolcat-specific
+  # command line options and convert them into an Options struct.
   class Parser < OptionParser
+    # The options object that will be populated with parsed values
     getter opt : Options
 
+    # The formatted help message string
     property help_message : String
 
+    # Initializes the parser with all supported command line options.
+    #
+    # Sets up all the command line options that lolcat supports and
+    # their corresponding handlers.
     def initialize
       super()
       @opt = Options.new
@@ -99,6 +109,14 @@ module Lolcat
       end
     end
 
+    # Parses the provided command line arguments.
+    #
+    # Processes the command line arguments and updates the options object
+    # with the parsed values.
+    #
+    # args: The command line arguments to parse
+    #
+    # Returns the updated Options object
     def parse(args)
       super
       @opt

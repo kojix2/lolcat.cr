@@ -1,7 +1,14 @@
 # As a library
+#
+# This file provides the main API for using lolcat as a library.
+# It includes simplified methods for adding rainbow colors to text.
 
 require "./lolcat/lol"
 
+# The Lolcat module provides methods to colorize text with rainbow colors.
+#
+# This module serves as the main entry point for using lolcat as a library.
+# It provides simplified methods for adding rainbow colors to text from files or strings.
 module Lolcat
   module Lol
     extend self
