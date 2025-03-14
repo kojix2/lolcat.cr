@@ -109,6 +109,20 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The Lol module contains the core functionality for colorizing text with rainbow colors.</p>
+<p>This module provides methods to process text input (from strings or IO) and
+apply rainbow colors to each character. It handles ANSI escape sequences,
+animation effects, and various customization options.</p>
+
 
 
 
@@ -160,14 +174,14 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat.cr#L13" target="_blank">
         lolcat.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L10" target="_blank">
         lolcat/lol.cr
       </a>
     
@@ -192,35 +206,63 @@
         <strong>ANSI_ESCAPE</strong> = <code><span class="s">/((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/</span>m</code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>Regular expression to match ANSI escape sequences and visible characters</p>
+      </dd>
+      
     
       <dt class="entry-const" id="ESCAPE_SEQUENCES">
         <strong>ESCAPE_SEQUENCES</strong> = <code><span class="s">/\e\[[0-?]*[@JKPX]/</span></code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Regular expression to match ANSI escape sequences for cursor movement</p>
+      </dd>
       
     
       <dt class="entry-const" id="HIDE_CURSOR">
         <strong>HIDE_CURSOR</strong> = <code><span class="s">&quot;\e[?25l&quot;</span></code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>ANSI escape sequence to hide the cursor</p>
+      </dd>
+      
     
       <dt class="entry-const" id="INCOMPLETE_ESCAPE">
         <strong>INCOMPLETE_ESCAPE</strong> = <code><span class="s">/\e(?:[ -\/]*|[\]PX^_][^\a\e]*|\[[0-?]*)$/</span></code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>Regular expression to match incomplete ANSI escape sequences at the end of a buffer</p>
+      </dd>
       
     
       <dt class="entry-const" id="RESET_ATTRIBUTES">
         <strong>RESET_ATTRIBUTES</strong> = <code><span class="s">&quot;\e[m&quot;</span></code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>ANSI escape sequence to reset all terminal attributes</p>
+      </dd>
+      
     
       <dt class="entry-const" id="RESET_TERMINAL_MODES">
         <strong>RESET_TERMINAL_MODES</strong> = <code><span class="s">&quot;\e[?1;5;2004l&quot;</span></code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>ANSI escape sequence to reset terminal modes</p>
+      </dd>
+      
     
       <dt class="entry-const" id="SHOW_CURSOR">
         <strong>SHOW_CURSOR</strong> = <code><span class="s">&quot;\e[?25h&quot;</span></code>
       </dt>
+      
+      <dd class="entry-const-doc">
+        <p>ANSI escape sequence to show the cursor</p>
+      </dd>
       
     
   </dl>
@@ -246,30 +288,42 @@
       <li class="entry-summary">
         <a href="#lol%28input%3AString%2Coptions%3AOptions%2C%26%29-instance-method" class="signature"><strong>#lol</strong>(input : String, options : Options, &)</a>
         
+          <div class="summary"><p>Processes a string input and yields each colorized line.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#lol%28input%3AIO%2Coptions%3AOptions%2C%26%29-instance-method" class="signature"><strong>#lol</strong>(input : IO, options : Options, &)</a>
+        
+          <div class="summary"><p>Processes an IO input and yields each colorized line.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#lol_cat%28input%3AIO%7CString%2Coptions%3AOptions%29-instance-method" class="signature"><strong>#lol_cat</strong>(input : IO | String, options : Options)</a>
         
+          <div class="summary"><p>Processes input and prints it with rainbow colors.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#rainbow_color%28freq%3AFloat64%2Coffset%3AFloat64%29%3ATuple%28UInt8%2CUInt8%2CUInt8%29-instance-method" class="signature"><strong>#rainbow_color</strong>(freq : Float64, offset : Float64) : Tuple(UInt8, UInt8, UInt8)</a>
+        
+          <div class="summary"><p>Calculates RGB color values for a rainbow effect based on frequency and offset.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#rainbow_line%28line%3AString%2Coptions%3AOptions%2Cindex%3AInt32%2Cpos%3AInt32%29%3AString-instance-method" class="signature"><strong>#rainbow_line</strong>(line : String, options : Options, index : Int32, pos : Int32) : String</a>
         
+          <div class="summary"><p>Applies rainbow colors to a line of text based on line number and position.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#rainbow_line%28line%3AString%2Coptions%3AOptions%2Coffset%3AFloat64%29%3AString-instance-method" class="signature"><strong>#rainbow_line</strong>(line : String, options : Options, offset : Float64) : String</a>
+        
+          <div class="summary"><p>Applies rainbow colors to a line of text based on a specific offset.</p></div>
         
       </li>
     
@@ -305,10 +359,20 @@
         <a class="method-permalink" href="#lol%28input%3AString%2Coptions%3AOptions%2C%26%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Processes a string input and yields each colorized line.</p>
+<p>This is a convenience overload that converts a string to an IO::Memory
+and delegates to the IO version of this method.</p>
+<p>input: The string to process
+options: Configuration options for the colorization
+yield: Each processed line is yielded to the block</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -321,10 +385,21 @@
         <a class="method-permalink" href="#lol%28input%3AIO%2Coptions%3AOptions%2C%26%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Processes an IO input and yields each colorized line.</p>
+<p>This method reads from the input IO in chunks, processes each line,
+and yields the colorized output. It handles ANSI escape sequences
+and maintains line numbering for proper rainbow color progression.</p>
+<p>input: The IO to read from
+options: Configuration options for the colorization
+yield: Each processed line is yielded to the block</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -337,10 +412,20 @@
         <a class="method-permalink" href="#lol_cat%28input%3AIO%7CString%2Coptions%3AOptions%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Processes input and prints it with rainbow colors.</p>
+<p>This is the main function for displaying colorized text to the terminal.
+It handles both string and IO inputs, applies rainbow colors, and manages
+terminal state (cursor visibility, etc.).</p>
+<p>input: The text to colorize (either a String or IO)
+options: Configuration options for the colorization</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -353,10 +438,20 @@
         <a class="method-permalink" href="#rainbow_color%28freq%3AFloat64%2Coffset%3AFloat64%29%3ATuple%28UInt8%2CUInt8%2CUInt8%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Calculates RGB color values for a rainbow effect based on frequency and offset.</p>
+<p>This function uses sine waves with different phase shifts to generate
+smooth transitions between colors in the rainbow spectrum.</p>
+<p>freq: Controls how quickly the colors change
+offset: Position in the color cycle</p>
+<p>Returns a tuple of RGB values as UInt8 (0-255)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -369,10 +464,22 @@
         <a class="method-permalink" href="#rainbow_line%28line%3AString%2Coptions%3AOptions%2Cindex%3AInt32%2Cpos%3AInt32%29%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Applies rainbow colors to a line of text based on line number and position.</p>
+<p>This overload calculates the appropriate offset based on line number and position,
+then delegates to the offset-based version of this method.</p>
+<p>line: The line of text to colorize
+options: Configuration options for the colorization
+index: The line number (used for color progression)
+pos: The cursor position (used for color progression)</p>
+<p>Returns a string with rainbow colors applied</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L177" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -385,10 +492,21 @@
         <a class="method-permalink" href="#rainbow_line%28line%3AString%2Coptions%3AOptions%2Coffset%3AFloat64%29%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Applies rainbow colors to a line of text based on a specific offset.</p>
+<p>This is the core method that applies rainbow colors to each character in a line.
+It handles ANSI escape sequences and applies colors to visible characters only.</p>
+<p>line: The line of text to colorize
+options: Configuration options for the colorization
+offset: The color offset to use (determines the starting color)</p>
+<p>Returns a string with rainbow colors applied</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/lol.cr#L99" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/lol.cr#L192" target="_blank">View source</a>]
         
       </div>
     </div>

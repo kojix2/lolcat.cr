@@ -111,6 +111,19 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Configuration options for the lolcat colorization process.</p>
+<p>This struct holds all the parameters that control how text is colorized,
+including color cycling speed, animation settings, and display options.</p>
+
 
 
 
@@ -134,7 +147,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L8" target="_blank">
         lolcat/options.cr
       </a>
     
@@ -181,90 +194,126 @@
       <li class="entry-summary">
         <a href="#action%3AAction-instance-method" class="signature"><strong>#action</strong> : Action</a>
         
+          <div class="summary"><p>The action to perform (Lolcat, Version, or Help)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#action%3D%28action%3AAction%29-instance-method" class="signature"><strong>#action=</strong>(action : Action)</a>
+        
+          <div class="summary"><p>The action to perform (Lolcat, Version, or Help)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#animate%3D%28animate%3ABool%29-instance-method" class="signature"><strong>#animate=</strong>(animate : Bool)</a>
         
+          <div class="summary"><p>Whether to animate the colors (shifting rainbow effect)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#animate%3F%3ABool-instance-method" class="signature"><strong>#animate?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether to animate the colors (shifting rainbow effect)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#duration%3AInt32-instance-method" class="signature"><strong>#duration</strong> : Int32</a>
         
+          <div class="summary"><p>Number of animation frames to display</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#duration%3D%28duration%3AInt32%29-instance-method" class="signature"><strong>#duration=</strong>(duration : Int32)</a>
+        
+          <div class="summary"><p>Number of animation frames to display</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#force%3D%28force%3ABool%29-instance-method" class="signature"><strong>#force=</strong>(force : Bool)</a>
         
+          <div class="summary"><p>Whether to force color output even when not outputting to a TTY</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#force%3F%3ABool-instance-method" class="signature"><strong>#force?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether to force color output even when not outputting to a TTY</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#freq%3AFloat64-instance-method" class="signature"><strong>#freq</strong> : Float64</a>
         
+          <div class="summary"><p>Controls how quickly the colors cycle (higher = faster color change)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#freq%3D%28freq%3AFloat64%29-instance-method" class="signature"><strong>#freq=</strong>(freq : Float64)</a>
+        
+          <div class="summary"><p>Controls how quickly the colors cycle (higher = faster color change)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#invert%3D%28invert%3ABool%29-instance-method" class="signature"><strong>#invert=</strong>(invert : Bool)</a>
         
+          <div class="summary"><p>Whether to use background colors instead of foreground colors</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#invert%3F%3ABool-instance-method" class="signature"><strong>#invert?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether to use background colors instead of foreground colors</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#offset%3AFloat64-instance-method" class="signature"><strong>#offset</strong> : Float64</a>
         
+          <div class="summary"><p>Starting position in the color cycle (randomized by default)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#offset%3D%28offset%3AFloat64%29-instance-method" class="signature"><strong>#offset=</strong>(offset : Float64)</a>
+        
+          <div class="summary"><p>Starting position in the color cycle (randomized by default)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#speed%3AFloat64-instance-method" class="signature"><strong>#speed</strong> : Float64</a>
         
+          <div class="summary"><p>Animation speed (frames per second)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#speed%3D%28speed%3AFloat64%29-instance-method" class="signature"><strong>#speed=</strong>(speed : Float64)</a>
+        
+          <div class="summary"><p>Animation speed (frames per second)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#spread%3AFloat64-instance-method" class="signature"><strong>#spread</strong> : Float64</a>
         
+          <div class="summary"><p>Controls how far apart the colors are spread (higher = slower color change)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#spread%3D%28spread%3AFloat64%29-instance-method" class="signature"><strong>#spread=</strong>(spread : Float64)</a>
+        
+          <div class="summary"><p>Controls how far apart the colors are spread (higher = slower color change)</p></div>
         
       </li>
     
@@ -336,7 +385,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -365,10 +414,15 @@
         <a class="method-permalink" href="#action%3AAction-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The action to perform (Lolcat, Version, or Help)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -381,10 +435,15 @@
         <a class="method-permalink" href="#action%3D%28action%3AAction%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The action to perform (Lolcat, Version, or Help)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -397,10 +456,15 @@
         <a class="method-permalink" href="#animate%3D%28animate%3ABool%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to animate the colors (shifting rainbow effect)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -413,10 +477,15 @@
         <a class="method-permalink" href="#animate%3F%3ABool-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to animate the colors (shifting rainbow effect)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -429,10 +498,15 @@
         <a class="method-permalink" href="#duration%3AInt32-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Number of animation frames to display</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -445,10 +519,15 @@
         <a class="method-permalink" href="#duration%3D%28duration%3AInt32%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Number of animation frames to display</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -461,10 +540,15 @@
         <a class="method-permalink" href="#force%3D%28force%3ABool%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to force color output even when not outputting to a TTY</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -477,10 +561,15 @@
         <a class="method-permalink" href="#force%3F%3ABool-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to force color output even when not outputting to a TTY</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -493,10 +582,15 @@
         <a class="method-permalink" href="#freq%3AFloat64-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Controls how quickly the colors cycle (higher = faster color change)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -509,10 +603,15 @@
         <a class="method-permalink" href="#freq%3D%28freq%3AFloat64%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Controls how quickly the colors cycle (higher = faster color change)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -525,10 +624,15 @@
         <a class="method-permalink" href="#invert%3D%28invert%3ABool%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to use background colors instead of foreground colors</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -541,10 +645,15 @@
         <a class="method-permalink" href="#invert%3F%3ABool-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to use background colors instead of foreground colors</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -557,10 +666,15 @@
         <a class="method-permalink" href="#offset%3AFloat64-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Starting position in the color cycle (randomized by default)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -573,10 +687,15 @@
         <a class="method-permalink" href="#offset%3D%28offset%3AFloat64%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Starting position in the color cycle (randomized by default)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -589,10 +708,15 @@
         <a class="method-permalink" href="#speed%3AFloat64-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Animation speed (frames per second)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -605,10 +729,15 @@
         <a class="method-permalink" href="#speed%3D%28speed%3AFloat64%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Animation speed (frames per second)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,10 +750,15 @@
         <a class="method-permalink" href="#spread%3AFloat64-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Controls how far apart the colors are spread (higher = slower color change)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -637,10 +771,15 @@
         <a class="method-permalink" href="#spread%3D%28spread%3AFloat64%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Controls how far apart the colors are spread (higher = slower color change)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/options.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/options.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

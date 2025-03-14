@@ -111,6 +111,19 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Command Line Interface for the lolcat program.</p>
+<p>This class handles the command line interface, including parsing arguments,
+executing the appropriate action, and handling errors.</p>
+
 
 
 
@@ -148,7 +161,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L8" target="_blank">
         cli.cr
       </a>
     
@@ -172,6 +185,8 @@
       <li class="entry-summary">
         <a href="#new-class-method" class="signature"><strong>.new</strong></a>
         
+          <div class="summary"><p>Initializes the CLI with a parser and default options.</p></div>
+        
       </li>
     
   </ul>
@@ -191,10 +206,14 @@
       <li class="entry-summary">
         <a href="#debug%3D%28debug%3ABool%29-class-method" class="signature"><strong>.debug=</strong>(debug : Bool)</a>
         
+          <div class="summary"><p>Whether to enable debug mode (shows stack traces on errors)</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#debug%3F%3ABool-class-method" class="signature"><strong>.debug?</strong> : Bool</a>
+        
+          <div class="summary"><p>Whether to enable debug mode (shows stack traces on errors)</p></div>
         
       </li>
     
@@ -217,35 +236,49 @@
       <li class="entry-summary">
         <a href="#option%3AOptions-instance-method" class="signature"><strong>#option</strong> : Options</a>
         
+          <div class="summary"><p>The options parsed from command line arguments</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#parse_args%28args%3DARGV%29-instance-method" class="signature"><strong>#parse_args</strong>(args = <span class="t">ARGV</span>)</a>
+        
+          <div class="summary"><p>Parses command line arguments and updates the options.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#parser%3AParser-instance-method" class="signature"><strong>#parser</strong> : Parser</a>
         
+          <div class="summary"><p>The command line argument parser</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#print_help-instance-method" class="signature"><strong>#print_help</strong></a>
+        
+          <div class="summary"><p>Prints the help message with rainbow colors.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#print_version-instance-method" class="signature"><strong>#print_version</strong></a>
         
+          <div class="summary"><p>Prints the version information.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
         
+          <div class="summary"><p>Runs the program with the parsed options.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#run_lolcat-instance-method" class="signature"><strong>#run_lolcat</strong></a>
+        
+          <div class="summary"><p>Executes the main lolcat functionality.</p></div>
         
       </li>
     
@@ -338,10 +371,17 @@
         <a class="method-permalink" href="#new-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Initializes the CLI with a parser and default options.</p>
+<p>Sets up a termination handler to reset terminal modes when the program
+is interrupted.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -366,10 +406,15 @@
         <a class="method-permalink" href="#debug%3D%28debug%3ABool%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to enable debug mode (shows stack traces on errors)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -382,10 +427,15 @@
         <a class="method-permalink" href="#debug%3F%3ABool-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Whether to enable debug mode (shows stack traces on errors)</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -412,10 +462,15 @@
         <a class="method-permalink" href="#option%3AOptions-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The options parsed from command line arguments</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -428,10 +483,17 @@
         <a class="method-permalink" href="#parse_args%28args%3DARGV%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Parses command line arguments and updates the options.</p>
+<p>args: The command line arguments to parse (defaults to ARGV)</p>
+<p>Returns the updated options</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -444,10 +506,15 @@
         <a class="method-permalink" href="#parser%3AParser-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The command line argument parser</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -460,10 +527,15 @@
         <a class="method-permalink" href="#print_help-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Prints the help message with rainbow colors.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -476,10 +548,15 @@
         <a class="method-permalink" href="#print_version-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Prints the version information.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -492,10 +569,17 @@
         <a class="method-permalink" href="#run-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Runs the program with the parsed options.</p>
+<p>This is the main entry point that executes the appropriate action
+based on the parsed command line arguments.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -508,10 +592,17 @@
         <a class="method-permalink" href="#run_lolcat-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Executes the main lolcat functionality.</p>
+<p>Processes input from ARGF (files specified on the command line or stdin)
+and displays it with rainbow colors.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/cli.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/cli.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -128,7 +128,28 @@ mv bin/lolcat /usr/local/bin/ # or any directory in your PATH</code></pre>
 <pre><code class="language-sh">lolcat README.md</code></pre>
 <pre><code class="language-sh">lolcat --help</code></pre>
 <p>As a library</p>
-<p>See <a href="examples/">examples</a></p>
+<p>You can use lolcat.cr as a library in your Crystal projects:</p>
+<pre><code class="language-yaml"># Add to your shard.yml
+dependencies:
+  lolcat:
+    github: kojix2/lolcat.cr</code></pre>
+<p>Basic usage:</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;lolcat&quot;</span>
+
+<span class="c"># Use the Lol module directly</span>
+<span class="k">include</span> <span class="t">Lolcat</span><span class="t">::</span><span class="t">Lol</span>
+
+<span class="c"># Create options with default values</span>
+options <span class="o">=</span> <span class="t">Lolcat</span><span class="t">::</span><span class="t">Options</span>.new
+
+<span class="c"># Apply rainbow colors to a string</span>
+colored_text <span class="o">=</span> rainbow_line(<span class="s">&quot;Hello, colorful world!&quot;</span>, options, <span class="n">0.0</span>)
+puts colored_text
+
+<span class="c"># Or process an entire IO stream</span>
+io <span class="o">=</span> <span class="t">IO</span><span class="t">::</span><span class="t">Memory</span>.new(<span class="s">&quot;Multiple\nLines\nOf\nText&quot;</span>)
+lol_cat(io, options)</code></pre>
+<p>For more examples, see <a href="examples/">examples</a></p>
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

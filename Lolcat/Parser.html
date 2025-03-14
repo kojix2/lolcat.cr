@@ -111,6 +111,19 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Command line argument parser for the lolcat program.</p>
+<p>This class extends Crystal's OptionParser to handle lolcat-specific
+command line options and convert them into an Options struct.</p>
+
 
 
 
@@ -134,7 +147,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L10" target="_blank">
         lolcat/parser.cr
       </a>
     
@@ -157,6 +170,8 @@
     
       <li class="entry-summary">
         <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+          <div class="summary"><p>Initializes the parser with all supported command line options.</p></div>
         
       </li>
     
@@ -181,22 +196,28 @@
       <li class="entry-summary">
         <a href="#help_message%3AString-instance-method" class="signature"><strong>#help_message</strong> : String</a>
         
+          <div class="summary"><p>The formatted help message string</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#help_message%3D%28help_message%3AString%29-instance-method" class="signature"><strong>#help_message=</strong>(help_message : String)</a>
+        
+          <div class="summary"><p>The formatted help message string</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#opt%3AOptions-instance-method" class="signature"><strong>#opt</strong> : Options</a>
         
+          <div class="summary"><p>The options object that will be populated with parsed values</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#parse%28args%29-instance-method" class="signature"><strong>#parse</strong>(args)</a>
         
-          <div class="summary"><p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p></div>
+          <div class="summary"><p>Parses the provided command line arguments.</p></div>
         
       </li>
     
@@ -265,10 +286,17 @@
         <a class="method-permalink" href="#new-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Initializes the parser with all supported command line options.</p>
+<p>Sets up all the command line options that lolcat supports and
+their corresponding handlers.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -297,10 +325,15 @@
         <a class="method-permalink" href="#help_message%3AString-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The formatted help message string</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -313,10 +346,15 @@
         <a class="method-permalink" href="#help_message%3D%28help_message%3AString%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The formatted help message string</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -329,10 +367,15 @@
         <a class="method-permalink" href="#opt%3AOptions-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The options object that will be populated with parsed values</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -347,17 +390,17 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from class OptionParser
-            </div>
-          
-          <p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p>
+          <p>Parses the provided command line arguments.</p>
+<p>Processes the command line arguments and updates the options object
+with the parsed values.</p>
+<p>args: The command line arguments to parse</p>
+<p>Returns the updated Options object</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/lolcat.cr/blob/67d128f1173cb0f8ba39a500ce76db82038f126b/src/lolcat/parser.cr#L102" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/lolcat.cr/blob/5f1d265bc9fe94c01cae6128d130758f6f3951ba/src/lolcat/parser.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
