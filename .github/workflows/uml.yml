@@ -1,0 +1,40 @@
+name: Generate UML
+
+on:
+  push:
+    paths:
+      - "**.cr"
+      - ".github/workflows/uml.yml"
+  pull_request:
+    paths:
+      - "**.cr"
+      - ".github/workflows/uml.yml"
+  workflow_dispatch:
+
+jobs:
+  generate-uml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+
+      - name: Install d2
+        run: |
+          curl -fsSL https://d2lang.com/install.sh | sh -s --
+
+      - name: Generate UML
+        run: |
+          shards build
+          bin/cruml generate --path="src"
+          d2 uml.d2 uml.svg
+          ls
+
+      - name: Upload UML diagram
+        uses: actions/upload-artifact@v4
+        with:
+          name: uml-diagram
+          path: uml.svg

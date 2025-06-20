@@ -8,6 +8,10 @@ targets:
   lolcat:
     main: src/cli.cr
 
+development_dependencies:
+  cruml:
+    github: tamdaz/cruml
+
 crystal: '>= 1.14.0'
 
 license: MIT

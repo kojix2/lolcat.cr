@@ -1,0 +1,17 @@
+colors:
+  light:
+    classes: "#baa7e5"
+    abstract_classes: "#a7e5a7"
+    interfaces: "#e2c7a3"
+    modules: "#5ab3f4"
+  dark:
+    classes: "#2e1065"
+    abstract_classes: "#365314"
+    interfaces: "#af6300"
+    modules: "#0041cc"
+
+paths:
+  - src
+
+MyNamespace:
+  - Lolcat
