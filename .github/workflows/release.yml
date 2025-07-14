@@ -54,7 +54,7 @@ jobs:
         if: matrix.os == 'windows'
         run: |
           shards install --without-development --release
-          shards build --release --static
+          shards build --release --static --link-flags="-lucrt"
           Set-ExecutionPolicy RemoteSigned -Scope Process
           Compress-Archive -Path bin/lolcat.exe -DestinationPath bin/lolcat-windows.zip
 
