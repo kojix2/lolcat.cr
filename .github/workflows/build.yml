@@ -36,6 +36,7 @@ jobs:
           ln -s $(brew ls libgc | grep libgc.a) .
           ln -s $(brew ls pcre2 | grep libpcre2-8.a) .
           shards build --link-flags="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a" --release
+          otool -L bin/lolcat
       - name: Build executable
         if: matrix.os != 'macos'
         run: shards build --release
