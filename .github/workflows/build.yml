@@ -31,6 +31,8 @@ jobs:
       - name: Build executable (macOS)
         if: matrix.os == 'macos'
         run: |
+          brew update
+          brew install libgc pcre2
           ln -s $(brew ls libgc | grep libgc.a) .
           ln -s $(brew ls pcre2 | grep libpcre2-8.a) .
           shards build --link-flags="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a" --release
