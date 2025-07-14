@@ -3,6 +3,7 @@ name: build
 on:
   push:
   pull_request:
+  workflow_dispatch:
   schedule:
     - cron: "51 3 * * 6" # Runs at 03:51, only on Saturday
 jobs:
@@ -27,7 +28,14 @@ jobs:
           crystal build examples/lol.cr
           ./lol
           crystal spec
+      - name: Build executable (macOS)
+        if: matrix.os == 'macos'
+        run: |
+          ln -s $(brew ls libgc | grep libgc.a) .
+          ln -s $(brew ls pcre2 | grep libpcre2-8.a) .
+          shards build --link-flags="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a" --release
       - name: Build executable
+        if: matrix.os != 'macos'
         run: shards build --release
       - name: Run executable (help)
         run: bin/lolcat --help
