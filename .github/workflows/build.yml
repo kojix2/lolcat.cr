@@ -91,6 +91,11 @@ jobs:
           shards build --link-flags="$STATIC_LIBS" --release
           chmod +x bin/$BIN
           otool -L bin/$BIN
+          if otool -L bin/$BIN | grep homebrew; then
+            echo "Error: Homebrew dependencies detected!"
+            exit 1
+          fi
+          echo "Static linking successful"
           file bin/$BIN
           bin/$BIN --help
           PKG=lolcat-${VERSION}-${{ matrix.target }}
