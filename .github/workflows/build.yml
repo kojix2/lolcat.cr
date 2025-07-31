@@ -153,7 +153,7 @@ jobs:
         shell: msys2 {0}
         run: |
           shards install --without-development --release
-          shards build --release
+          shards build --release --static
           file bin/$BIN.exe
           bin/$BIN --help
           PKG=lolcat-${VERSION}-${{ matrix.target }}
