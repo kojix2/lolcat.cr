@@ -23,6 +23,8 @@ jobs:
             target: aarch64-apple-darwin
           - os: windows-latest
             target: x86_64-pc-windows-msvc
+          - os: windows-latest
+            target: x86_64-pc-windows-gnu
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
@@ -31,9 +33,20 @@ jobs:
           submodules: true
 
       - name: Install Crystal
+        if: matrix.target != 'x86_64-pc-windows-gnu'
         uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
+
+      - name: Install Crystal (MinGW64)
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-crystal
+            mingw-w64-x86_64-shards
 
       - name: Set version variables
         shell: bash
@@ -47,9 +60,24 @@ jobs:
           echo "BIN=lolcat" >> $GITHUB_ENV
 
       - name: Install dependencies
+        if: matrix.target != 'x86_64-pc-windows-gnu'
+        run: shards install --without-development
+
+      - name: Install dependencies (MinGW64)
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        shell: msys2 {0}
         run: shards install --without-development
 
       - name: Run tests
+        if: matrix.target != 'x86_64-pc-windows-gnu'
+        run: |
+          crystal build examples/lol.cr
+          ./lol
+          crystal spec
+
+      - name: Run tests (MinGW64)
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        shell: msys2 {0}
         run: |
           crystal build examples/lol.cr
           ./lol
@@ -105,7 +133,7 @@ jobs:
           cp README.md $PKG/
           tar czf $PKG.tar.gz $PKG
 
-      - name: Build on Windows
+      - name: Build on Windows (MSVC)
         if: matrix.target == 'x86_64-pc-windows-msvc'
         shell: pwsh
         run: |
@@ -118,6 +146,21 @@ jobs:
           Copy-Item "LICENSE" "$pkg/"
           Copy-Item "README.md" "$pkg/"
           Compress-Archive -Path "$pkg/*" -DestinationPath "$pkg.zip"
+
+      - name: Build on Windows (MinGW64)
+        if: matrix.target == 'x86_64-pc-windows-gnu'
+        shell: msys2 {0}
+        run: |
+          shards install --without-development --release
+          shards build --release
+          file bin/$BIN.exe
+          bin/$BIN --help
+          PKG=lolcat-${VERSION}-${{ matrix.target }}
+          mkdir -p $PKG
+          cp bin/$BIN.exe $PKG/
+          cp LICENSE $PKG/
+          cp README.md $PKG/
+          zip -r $PKG.zip $PKG
 
       - name: Upload artifacts (non-release)
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
