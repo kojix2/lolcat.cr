@@ -20,7 +20,7 @@ jobs:
           - os: macos-13
             target: x86_64-apple-darwin
           - os: macos-latest
-            target: arm64-apple-darwin
+            target: aarch64-apple-darwin
           - os: windows-latest
             target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
@@ -76,7 +76,7 @@ jobs:
           tar czf $PKG.tar.gz $PKG
 
       - name: Build on macOS
-        if: startsWith(matrix.target, 'x86_64-apple-darwin') || startsWith(matrix.target, 'arm64-apple-darwin')
+        if: startsWith(matrix.target, 'x86_64-apple-darwin') || startsWith(matrix.target, 'aarch64-apple-darwin')
         shell: bash
         run: |
           shards install --without-development --release
