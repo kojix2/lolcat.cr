@@ -9,18 +9,18 @@ module Lolcat
   # animation effects, and various customization options.
   module Lol
     # Regular expression to match ANSI escape sequences and visible characters
-    ANSI_ESCAPE       = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
+    ANSI_ESCAPE = /((?:\e(?:[ -\/]+.|[\]PX^_][^\a\e]*|\[[0-?]*.|.))*)(.?)/m
     # Regular expression to match incomplete ANSI escape sequences at the end of a buffer
     INCOMPLETE_ESCAPE = /\e(?:[ -\/]*|[\]PX^_][^\a\e]*|\[[0-?]*)$/
     # Regular expression to match ANSI escape sequences for cursor movement
-    ESCAPE_SEQUENCES  = /\e\[[0-?]*[@JKPX]/
+    ESCAPE_SEQUENCES = /\e\[[0-?]*[@JKPX]/
 
     # ANSI escape sequence to reset all terminal attributes
     RESET_ATTRIBUTES = "\e[m"
     # ANSI escape sequence to hide the cursor
-    HIDE_CURSOR      = "\e[?25l"
+    HIDE_CURSOR = "\e[?25l"
     # ANSI escape sequence to show the cursor
-    SHOW_CURSOR      = "\e[?25h"
+    SHOW_CURSOR = "\e[?25h"
     # ANSI escape sequence to reset terminal modes
     RESET_TERMINAL_MODES = "\e[?1;5;2004l"
 
