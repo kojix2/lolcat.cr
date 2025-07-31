@@ -25,11 +25,11 @@ module Lolcat
 
       self.banner = <<-BANNER
 
-      Program: lolcat
-      Usage:   lolcat [options] [FILE]...
+        Program: lolcat (crystal implementation)
+        Usage:   lolcat [options] [FILE]...
 
-      Options:
-      BANNER
+        Options:
+        BANNER
 
       # Spread
       on("-p", "--spread SPREAD", "Rainbow spread (default: #{opt.spread})") do |spread_str|
@@ -93,7 +93,7 @@ module Lolcat
 
       # Help
       on("-h", "--help", "Show this help message") do
-        @help_message = self.to_s
+        @help_message = to_s
         @opt.action = Action::Help
       end
 
