@@ -2,47 +2,131 @@ name: build
 
 on:
   push:
+    branches: ["*"]
+    tags: ["v*"]
   pull_request:
-  workflow_dispatch:
   schedule:
     - cron: "51 3 * * 6" # Runs at 03:51, only on Saturday
+
 jobs:
   build:
-    name: ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}-latest
+    name: build ${{ matrix.target }}
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu", "macos", "windows"]
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+          - os: macos-13
+            target: x86_64-apple-darwin
+          - os: macos-latest
+            target: arm64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           submodules: true
-      - uses: crystal-lang/install-crystal@v1
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
+
+      - name: Set version variables
+        shell: bash
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            VERSION=${{ github.ref_name }}
+          else
+            VERSION="build-$(date +%Y%m%d-%H%M%S)"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "BIN=lolcat" >> $GITHUB_ENV
+
       - name: Install dependencies
-        run: shards install --without-development --release
+        run: shards install --without-development
+
       - name: Run tests
         run: |
           crystal build examples/lol.cr
           ./lol
           crystal spec
-      - name: Build executable (macOS)
-        if: matrix.os == 'macos'
+
+      - name: Build on Linux
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        shell: bash
         run: |
+          mkdir -p bin
+          docker run -d --name alpine -v $(pwd):/workspace -w /workspace crystallang/crystal:latest-alpine tail -f /dev/null
+          docker exec alpine apk add readline-dev readline-static ncurses-dev ncurses-static ncurses-libs
+          docker exec alpine shards install --without-development --release --static
+          docker exec alpine shards build --release --static
+          docker exec alpine chmod +x bin/$BIN
+          ldd bin/$BIN || echo "Static binary (no dynamic dependencies)"
+          file bin/$BIN
+          bin/$BIN --help
+          PKG=lolcat-${VERSION}-${{ matrix.target }}
+          mkdir -p $PKG
+          cp bin/$BIN $PKG/
+          cp LICENSE $PKG/
+          cp README.md $PKG/
+          tar czf $PKG.tar.gz $PKG
+
+      - name: Build on macOS
+        if: startsWith(matrix.target, 'x86_64-apple-darwin') || startsWith(matrix.target, 'arm64-apple-darwin')
+        shell: bash
+        run: |
+          shards install --without-development --release
           brew update
           brew install libgc pcre2
+          echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+          unset PKG_CONFIG_PATH
+          echo "cleared PKG_CONFIG_PATH to avoid openSSL conflicts"
           ln -s $(brew ls libgc | grep libgc.a) .
           ln -s $(brew ls pcre2 | grep libpcre2-8.a) .
-          shards build --link-flags="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a" --release
-          otool -L bin/lolcat
-      - name: Build executable
-        if: matrix.os != 'macos'
-        run: shards build --release
-      - name: Run executable (help)
-        run: bin/lolcat --help
-      - uses: actions/upload-artifact@v4
+          STATIC_LIBS="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a"
+          shards build --link-flags="$STATIC_LIBS" --release
+          chmod +x bin/$BIN
+          otool -L bin/$BIN
+          file bin/$BIN
+          bin/$BIN --help
+          PKG=lolcat-${VERSION}-${{ matrix.target }}
+          mkdir -p $PKG
+          cp bin/$BIN $PKG/
+          cp LICENSE $PKG/
+          cp README.md $PKG/
+          tar czf $PKG.tar.gz $PKG
+
+      - name: Build on Windows
+        if: matrix.target == 'x86_64-pc-windows-msvc'
+        shell: pwsh
+        run: |
+          shards install --without-development --release
+          shards build --release --static --link-flags="-lucrt"
+          bin/lolcat --help
+          $pkg = "lolcat-$env:VERSION-${{ matrix.target }}"
+          mkdir $pkg
+          Copy-Item "bin/$env:BIN.exe" "$pkg/"
+          Copy-Item "LICENSE" "$pkg/"
+          Copy-Item "README.md" "$pkg/"
+          Compress-Archive -Path "$pkg/*" -DestinationPath "$pkg.zip"
+
+      - name: Upload artifacts (non-release)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
         with:
-          name: lolcat-${{ matrix.os }}
-          path: bin/${{ matrix.os == 'windows' && 'lolcat.exe' || 'lolcat' }}
+          name: lolcat-${{ matrix.target }}
+          path: |
+            lolcat-*.tar.gz
+            lolcat-*.zip
+
+      - name: Upload release assets (release only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            lolcat-*.tar.gz
+            lolcat-*.zip
