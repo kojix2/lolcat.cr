@@ -31,8 +31,10 @@ module Lolcat
         Options:
         BANNER
 
+      self.summary_width = 24
+
       # Spread
-      on("-p", "--spread SPREAD", "Rainbow spread (default: #{opt.spread})") do |spread_str|
+      on("-p", "--spread SPREAD", "Rainbow spread [#{opt.spread}]") do |spread_str|
         spread = spread_str.to_f
         if spread < 0.1
           STDERR.puts "[lolcat] ERROR: Spread must be >= 0.1"
@@ -42,13 +44,13 @@ module Lolcat
       end
 
       # Frequency
-      on("-F", "--freq FREQ", "Rainbow frequency (default: #{opt.freq})") do |freq_str|
+      on("-F", "--freq FREQ", "Rainbow frequency [#{opt.freq}]") do |freq_str|
         freq = freq_str.to_f
         @opt.freq = freq
       end
 
       # Seed
-      on("-S", "--seed SEED", "Rainbow offset (default: random)") do |seed_str|
+      on("-S", "--seed SEED", "Rainbow offset [random]") do |seed_str|
         seed = seed_str.to_f64
         offset = seed % 256
         @opt.offset = offset
@@ -60,13 +62,13 @@ module Lolcat
       end
 
       # Duration
-      on("-d", "--duration DURATION", "Animation duration (default: #{opt.duration})") do |duration_str|
+      on("-d", "--duration DURATION", "Animation duration [#{opt.duration}]") do |duration_str|
         duration = duration_str.to_i
         @opt.duration = duration
       end
 
       # Speed
-      on("-s", "--speed SPEED", "Animation speed (default: #{opt.speed})") do |speed_str|
+      on("-s", "--speed SPEED", "Animation speed [#{opt.speed}]") do |speed_str|
         speed = speed_str.to_f
         @opt.speed = speed
       end
@@ -77,7 +79,7 @@ module Lolcat
       end
 
       # Force
-      on("-f", "--force", "Force color even when stdout is not a tty") do
+      on("-f", "--force", "Force color on non-tty output") do
         @opt.force = true
       end
 
