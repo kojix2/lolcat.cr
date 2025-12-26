@@ -76,7 +76,8 @@ module Lolcat
 
     # Prints the version information.
     def print_version
-      puts "lolcat version #{Lolcat::VERSION}"
+      puts "lolcat #{Lolcat::VERSION}"
+      puts "#{Lolcat::REPOSITORY}"
     end
 
     # Prints the help message with rainbow colors.

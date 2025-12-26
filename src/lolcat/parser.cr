@@ -26,6 +26,8 @@ module Lolcat
       self.banner = <<-BANNER
 
         Program: lolcat (crystal implementation)
+        Source:  #{Lolcat::REPOSITORY}
+
         Usage:   lolcat [options] [FILE]...
 
         Options:

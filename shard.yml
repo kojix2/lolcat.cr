@@ -8,6 +8,8 @@ targets:
   lolcat:
     main: src/cli.cr
 
-crystal: '>= 1.14.0'
+crystal: ">= 1.14.0"
 
 license: MIT
+
+repository: "https://github.com/kojix2/lolcat.cr"
