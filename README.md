@@ -24,6 +24,9 @@ mv bin/lolcat /usr/local/bin/ # or any directory in your PATH
 
 Homebrew:
 
+[![lolcat (macos)](https://github.com/kojix2/homebrew-brew/actions/workflows/lolcat-macos.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/lolcat-macos.yml)
+[![lolcat (ubuntu)](https://github.com/kojix2/homebrew-brew/actions/workflows/lolcat-ubuntu.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/lolcat-ubuntu.yml)
+
 ```sh
 brew install kojix2/brew/lolcat
 ```
