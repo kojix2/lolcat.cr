@@ -151,15 +151,8 @@ jobs:
         run: |
           shards install --without-development --release
           shards build --release --no-debug --static
-          $strip = (Get-Command llvm-strip -ErrorAction SilentlyContinue).Source
-          if (-not $strip) {
-            $strip = (Get-Command strip -ErrorAction SilentlyContinue).Source
-          }
-          if (-not $strip) {
-            throw "No strip tool found"
-          }
-          Write-Host "Using strip tool: $strip"
-          & $strip --strip-unneeded "bin/$env:BIN.exe"
+          Write-Host "Using strip tool: llvm-strip"
+          llvm-strip --strip-unneeded "bin/$env:BIN.exe"
           bin/lolcat --help
           $pkg = "lolcat-$env:VERSION-${{ matrix.target }}"
           mkdir $pkg
