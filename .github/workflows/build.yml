@@ -48,6 +48,7 @@ jobs:
           install: >-
             mingw-w64-x86_64-crystal
             mingw-w64-x86_64-shards
+            mingw-w64-x86_64-binutils
             zip
 
       - name: Set version variables
@@ -94,13 +95,14 @@ jobs:
           mkdir -p bin
           rm -f bin/$BIN
           docker run -d --name alpine -v $(pwd):/workspace -w /workspace crystallang/crystal:latest-alpine tail -f /dev/null
-          docker exec alpine apk add readline-dev readline-static ncurses-dev ncurses-static ncurses-libs
+          docker exec alpine apk add readline-dev readline-static ncurses-dev ncurses-static ncurses-libs binutils
           docker exec alpine shards install --without-development --release --static
           docker exec alpine crystal build examples/lol.cr -o /tmp/lol-example
           docker exec alpine /tmp/lol-example
           docker exec alpine crystal spec
-          docker exec alpine shards build --release --static
+          docker exec alpine shards build --release --no-debug --static
           docker exec alpine chmod +x bin/$BIN
+          docker exec alpine strip --strip-unneeded bin/$BIN
           test -x bin/$BIN
           ldd bin/$BIN || echo "Static binary (no dynamic dependencies)"
           file bin/$BIN
@@ -125,8 +127,9 @@ jobs:
           ln -s $(brew ls libgc | grep libgc.a) .
           ln -s $(brew ls pcre2 | grep libpcre2-8.a) .
           STATIC_LIBS="-L $(pwd) $(pwd)/libgc.a $(pwd)/libpcre2-8.a"
-          shards build --link-flags="$STATIC_LIBS" --release
+          shards build --link-flags="$STATIC_LIBS" --release --no-debug
           chmod +x bin/$BIN
+          strip -x bin/$BIN
           otool -L bin/$BIN
           if otool -L bin/$BIN | grep homebrew; then
             echo "Error: Homebrew dependencies detected!"
@@ -147,7 +150,15 @@ jobs:
         shell: pwsh
         run: |
           shards install --without-development --release
-          shards build --release --static --link-flags="-lucrt"
+          shards build --release --no-debug --static --link-flags="-lucrt"
+          $strip = (Get-Command llvm-strip -ErrorAction SilentlyContinue).Source
+          if (-not $strip) {
+            $strip = (Get-Command strip -ErrorAction SilentlyContinue).Source
+          }
+          if (-not $strip) {
+            throw "No strip tool found"
+          }
+          & $strip --strip-unneeded "bin/$env:BIN.exe"
           bin/lolcat --help
           $pkg = "lolcat-$env:VERSION-${{ matrix.target }}"
           mkdir $pkg
@@ -161,7 +172,8 @@ jobs:
         shell: msys2 {0}
         run: |
           shards install --without-development --release
-          shards build --release --static
+          shards build --release --no-debug --static
+          strip --strip-unneeded bin/$BIN.exe
           file bin/$BIN.exe
           bin/$BIN --help
           PKG=lolcat-${VERSION}-${{ matrix.target }}
