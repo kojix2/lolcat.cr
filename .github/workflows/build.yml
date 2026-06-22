@@ -16,6 +16,8 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
           - os: macos-15-intel
             target: x86_64-apple-darwin
           - os: macos-latest
@@ -84,15 +86,22 @@ jobs:
           crystal spec
 
       - name: Build on Linux
-        if: matrix.target == 'x86_64-unknown-linux-musl'
+        if: >-
+          matrix.target == 'x86_64-unknown-linux-musl' ||
+          matrix.target == 'aarch64-unknown-linux-musl'
         shell: bash
         run: |
           mkdir -p bin
+          rm -f bin/$BIN
           docker run -d --name alpine -v $(pwd):/workspace -w /workspace crystallang/crystal:latest-alpine tail -f /dev/null
           docker exec alpine apk add readline-dev readline-static ncurses-dev ncurses-static ncurses-libs
           docker exec alpine shards install --without-development --release --static
+          docker exec alpine crystal build examples/lol.cr -o /tmp/lol-example
+          docker exec alpine /tmp/lol-example
+          docker exec alpine crystal spec
           docker exec alpine shards build --release --static
           docker exec alpine chmod +x bin/$BIN
+          test -x bin/$BIN
           ldd bin/$BIN || echo "Static binary (no dynamic dependencies)"
           file bin/$BIN
           bin/$BIN --help
